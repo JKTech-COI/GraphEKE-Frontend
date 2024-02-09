@@ -52,6 +52,7 @@ export class HomeComponent {
     this.selectedSource='';
     this.selectedFile=[];
     this.chatMessages=[];
+    this.logs='';
     this.chatInput='';
     this.isStructured=false;
     this.isUnStructured=false;
