@@ -194,14 +194,14 @@ logs:any='';
     this.loading1=true;
     const userQuestion = this.chatInput;
     this.chatMessages.push({ content: userQuestion, type: 'question' });
-
+    this.chatInput = '';
     this.http.post('http://35.207.234.212:5000/reasoning_agent',{"query":userQuestion})
     .subscribe((res:any)=>{
       console.log(res);
       this.chatMessages.push({ content: res.response, type: 'response' });
       this.logs=res.agent_logs;
       this.loading1=false;
-      this.chatInput = '';
+      
     },
     error =>{
       this.loading1=false;
