@@ -189,7 +189,7 @@ isStructured:boolean=false;
         })
   }
 
-
+logs:any='';
   sendRequest(){
     this.loading1=true;
     const userQuestion = this.chatInput;
@@ -199,6 +199,7 @@ isStructured:boolean=false;
     .subscribe((res:any)=>{
       console.log(res);
       this.chatMessages.push({ content: res.response, type: 'response' });
+      this.logs=res.agent_logs;
       this.loading1=false;
       this.chatInput = '';
     },
@@ -206,14 +207,10 @@ isStructured:boolean=false;
       this.loading1=false;
       this.toastr.error(error.message);
     })
-    // if(userQuestion=='Hi'){
-    //   let res='Hello, How can i help you'
-    //   this.chatMessages.push({ content: res, type: 'response' });
-    // }else{
-    //   let res='Comprehensive perspective on technologies and industry trends by our knowledge experts Comprehensive perspective on technologies and industry trends by our knowledge experts Comprehensive perspective on technologies and industry trends by our knowledge experts'+
-    //   'Comprehensive perspective on technologies and industry trends by our knowledge experts Comprehensive perspective on technologies and industry trends by our knowledge experts Comprehensive perspective on technologies and industry trends by our knowledge experts'
-    //   this.chatMessages.push({ content: res, type: 'response' });
-    // }
+  }
+
+  formatLogs(logs: string): string {
+    return logs.replace(/\n/g, '<br>');
   }
 
   isUserMessage(message: any): boolean {

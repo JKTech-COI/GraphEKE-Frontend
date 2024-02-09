@@ -66,6 +66,24 @@
   .right-section{
     flex: 5.1; 
     overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+  .upper-section {
+    flex: 1.3;
+    overflow: hidden;
+  }
+  
+  .lower-section {
+    flex: 0.7;
+    overflow: hidden;
+    /* Add your styles for the lower section here */
+  }
+  .logs_section{
+    height: 98%;
+    margin: 2px 5px 5px 13px;
+    overflow-y: auto;
+    /* border-bottom: 1px solid #ccc; */
   }
   .separator {
     width: 2px; 
@@ -86,6 +104,7 @@
    margin: 8px 0px !important;
    padding: 0px !important;
   }
+  
   /* .chatContainer {
     display: flex;
     flex-direction: column;
@@ -235,7 +254,7 @@
 .chatContainer {
   display: flex;
   flex-direction: column;
-  height: 90%;
+  height: 88%;
 }
 
 .chatSection {

@@ -33,30 +33,38 @@
         <p *ngFor="let file of UnstructName" style="margin-bottom: 10px;">* {{file.name}}</p>
       </div>
     </div>
+
     <div class="separator"></div>
+
     <div class="right-section"> 
-      <p>Chat Window
-        <span class="ml-auto">
-          <button class="btn btn-primary" (click)="reset()">Reset</button>
-        </span>
-      </p>
-      <hr class="top_hr" >
-      <div class="chatContainer">
-        <div class="chatSection">
-          <ng-container *ngFor="let message of chatMessages">
-            <div class="message" [ngClass]="{'question': message.type === 'question', 'response': message.type === 'response'}">
-              {{ message.content }}
-            </div>
-          </ng-container>
+      <div class="upper-section">
+        <p>Chat Window
+          <span class="ml-auto">
+            <button class="btn btn-primary" (click)="reset()">Reset</button>
+          </span>
+        </p>
+        <hr class="top_hr" >
+        <div class="chatContainer">
+          <div class="chatSection">
+            <ng-container *ngFor="let message of chatMessages">
+              <div class="message" [ngClass]="{'question': message.type === 'question', 'response': message.type === 'response'}">
+                {{ message.content }}
+              </div>
+            </ng-container>
+          </div>
+          <div *ngIf="loading1" class="loading">
+            <mat-spinner diameter="50" color="primary"></mat-spinner>
+          </div>
+          <div class="input-container">
+            <input type="text" placeholder="Type your question..." [(ngModel)]="chatInput" (keyup.enter)="sendRequest()" [disabled]="isInputEnable"/>
+            <mat-icon (click)="sendRequest()">send</mat-icon>
+          </div>
         </div>
-        <div *ngIf="loading1" class="loading">
-          <mat-spinner diameter="50" color="primary"></mat-spinner>
-        </div>
-        <div class="input-container">
-          <input type="text" placeholder="Type your question..." [(ngModel)]="chatInput" (keyup.enter)="sendRequest()" [disabled]="isInputEnable"/>
-          <mat-icon (click)="sendRequest()">send</mat-icon>
-        </div>
-    </div>
+      </div>
+      <hr class="top_hr">
+      <div class="lower-section">
+          <div class="logs_section" [innerHTML]="formatLogs(logs)" style="white-space: pre-line;"></div>
+      </div>
     </div>
   </div>
   
