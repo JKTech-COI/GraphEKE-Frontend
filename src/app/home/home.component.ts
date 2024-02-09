@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
-
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -26,7 +26,7 @@ export class HomeComponent {
   UnstructName:any=[];
   chatMessages: { content: string; type: 'question' | 'response' }[] = [];
 
-  constructor(private http:HttpClient,private toastr: ToastrService){
+  constructor(private http:HttpClient,private toastr: ToastrService,private router: Router){
 
   }
   
@@ -38,12 +38,25 @@ export class HomeComponent {
       console.log(response);
       this.loading1=false
       this.toastr.success(response);
-      this.selectedSource='';
+      this.clear();
     },
     error=>{
       this.loading1=false;
     })
     
+  }
+
+  clear(){
+    this.UnstructName=[];
+    this.structName=[];
+    this.selectedSource='';
+    this.selectedFile=[];
+    this.chatMessages=[];
+    this.chatInput='';
+    this.isStructured=false;
+    this.isUnStructured=false;
+    this.isStuctGenerated=false;
+    this.isUnstructGenerated=false;
   }
 
   onFileSelected(event: any): void {
@@ -191,6 +204,7 @@ isStructured:boolean=false;
     },
     error =>{
       this.loading1=false;
+      this.toastr.error(error.message);
     })
     // if(userQuestion=='Hi'){
     //   let res='Hello, How can i help you'
