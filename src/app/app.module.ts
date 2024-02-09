@@ -8,6 +8,7 @@ import { HomeComponent } from './home/home.component';
 import { FormsModule } from '@angular/forms';
 import {MatInputModule} from '@angular/material/input';
 import {MatIconModule} from '@angular/material/icon';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { HttpClientModule } from '@angular/common/http';
 import { ToastrModule } from 'ngx-toastr';
@@ -25,6 +26,7 @@ import { ToastrModule } from 'ngx-toastr';
     MatInputModule,
     MatProgressSpinnerModule,
     HttpClientModule,
+    BrowserAnimationsModule, 
     ToastrModule.forRoot(),
   ],
   providers: [],

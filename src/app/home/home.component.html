@@ -35,8 +35,12 @@
     </div>
     <div class="separator"></div>
     <div class="right-section"> 
-      <p>Chat Window</p>
-      <hr>
+      <p>Chat Window
+        <span class="ml-auto">
+          <button class="btn btn-primary" (click)="reset()">Reset</button>
+        </span>
+      </p>
+      <hr class="top_hr" >
       <div class="chatContainer">
         <div class="chatSection">
           <ng-container *ngFor="let message of chatMessages">

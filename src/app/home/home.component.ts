@@ -31,8 +31,19 @@ export class HomeComponent {
   }
   
 
-  selection(){
-    this.source_selection = !this.source_selection;
+  reset(){
+    this.loading1=true;
+    this.http.get('http://35.207.234.212:5000/refresh')
+    .subscribe((response:any) => {
+      console.log(response);
+      this.loading1=false
+      this.toastr.success(response);
+      this.selectedSource='';
+    },
+    error=>{
+      this.loading1=false;
+    })
+    
   }
 
   onFileSelected(event: any): void {
@@ -153,7 +164,7 @@ isStructured:boolean=false;
           console.log(data);
           this.loading=false;
           this.isUnstructGenerated=true;
-          this.successMessage = "Unstructured KG generated successfully!, Now you can chat!";
+          this.successMessage = "Unstructured KG generated successfully!";
           setTimeout(() => {
             this.successMessage = null;
           }, 3500);
